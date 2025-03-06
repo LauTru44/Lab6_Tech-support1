@@ -19,7 +19,9 @@
  * 5) Length()
  * 6) It is easy because it was in the "methods" section and in alphabetical order.
  * 7) String trim()
- *
+ * 10) boolean
+ * 12)  random: is in "java.util" package, Creates a new random number generator.
+ *       Random rnd = new Random(), public Random()  
  */
 public class SupportSystem
 {
@@ -49,8 +51,9 @@ public class SupportSystem
         while(!finished) {
             String input = reader.getInput();
             input=input.trim(); //8. it removes the extra spaces from input
+            input=input.toLowerCase();
             
-            if(input.startsWith("bye")) {
+            if(input.equals("bye")) {
                 finished = true;
             }
             else {
