@@ -1,5 +1,8 @@
 import java.util.Random;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * The responder class represents a response generator object.
  * It is used to generate an automatic response to an input string.
@@ -11,36 +14,43 @@ import java.util.ArrayList;
 public class Responder
 {
     private Random randomGenerator;
-    private ArrayList <String> responses;
+    private HashMap <String,String> responses;
     /**
      * Construct a Responder - nothing to do
      */
     public Responder()
     {
         randomGenerator= new Random();
-        responses = new ArrayList<>();
-        fillResponses();
+        responses = new HashMap<>();
+        fillResponsesMap();
     }
     
-    private void fillResponses()
+    private void fillResponsesMap()
     {
-        responses.add("yes");
-        responses.add("No");
-        responses.add("Maybe");
-        responses.add("IDK");
-        responses.add("ok");
-        responses.add("yess");
-        responses.add("yesss");
-        responses.add("yesssssssss");
+     responses.put("hello","bye");
+     responses.put("yes","no");
+     responses.put("oui","non");
+     responses.put("helloo","byee");
+    }
+    
+    private String pickDefaultresponse()
+    {
+    return "no idea sorry";
     }
     
     /**
      * Generate a response.
      * @return   A string that should be displayed as the response
      */
-    public String generateResponse()
-    {
-     int i=randomGenerator.nextInt(responses.size());
-     return responses.get(i);
+    public String generateResponse(Set<String> words)
+    {  
+    for (String word : words) {    
+    String answer = responses.get(word);
+    
+    if (answer!=null){
+        return answer;
+    }       
+    }
+    return pickDefaultresponse();
     }
 }
